@@ -1,0 +1,3 @@
+/home/NewAge/DokerChess/build/CMakeFiles/My_chess_Game.dir
+/home/NewAge/DokerChess/build/CMakeFiles/edit_cache.dir
+/home/NewAge/DokerChess/build/CMakeFiles/rebuild_cache.dir
