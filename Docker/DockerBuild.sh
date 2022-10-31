@@ -1,2 +1,7 @@
 #! /bin/bash
-docker build -t chess:0.2 .
+
+version="0.3"
+scriptDir=$(dirname $0 | xargs -i readlink -f {})
+
+
+docker build -t chess:$version $scriptDir
