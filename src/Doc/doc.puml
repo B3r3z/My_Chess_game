@@ -1,0 +1,151 @@
+@startuml 
+
+class Pices{
+    int x
+    int y
+    {method} Pices(x_loc:int, y_loc:int, player:Game::Player)
+    set_x();
+    set_y()
+    get_x():int
+    get_y():int
+    set_player()
+    get_player()
+    get_type()
+    {abstract}is_valid_path(final_x:int,final_y:int):boolean
+    {abstract}draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+}
+
+class Pawn{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+    -can_move_forward(final_x:int,final_y:int) : boolean
+    -can_move_two()
+    -can_capture(final_x:int,final_y:int) : boolean
+}
+
+class Rook{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+}
+
+
+class Bishop{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+}
+
+class Knight{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+}
+
+
+class Queen{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+}
+
+
+class King{
+    -type:Game::Type
+    +Rook(x:int,y:int,player::GamePlayer)
+    +is_valid_path(final_x:int,final_y:int):boolean
+    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+    +get_type():Game::Type
+}
+
+class Type{
+    Pawn
+    Rook
+    Bishop
+    Knight
+    Queen
+    King
+}
+
+class Game{
+    +game_board:Board
+    +player_one:Player
+    +player_second:Player
+    +turn:int
+    -{static} _height:int=8
+    -{static} _width:int=8
+    +Game()
+    +get_Board_status()
+    +set_game()
+    -set_player()
+    -is_first()
+}
+
+class Board{
+    +BoardArray:Pices[][]
+    -{static} _height:int=8
+    -{static} _width:int=8
+    +Board(Game:Game)
+    +move_pice(Pices:Pice,final_x:int,final_y:int)
+    -set_pices()
+    -is_capture(Pices:Pice,final_x:int,final_y:int) boolean
+    -is_valid_move(Pices:Pice,final_x:int,final_y:int) boolean
+}
+class Color{
+    White
+    Black
+}
+class Player{
+    +player_color:Color
+    +is_first:boolean
+    +is_winner:boolean
+    +is_turn : boolean
+    +AI_mode:boolean
+    +score:int
+    +Player(playerColor:Color,is_first:boolean, AI_mode:boolean)
+}
+
+class GUI{
+    -current_player: Game::Player
+    -game:Game::game
+    -is_end_turn:boolean
+    +GUI()
+    +get_current_player()
+    +set_current_player()
+    +set_game()
+}
+
+Pawn<--Pices
+Rook<--Pices
+Bishop<--Pices
+Knight<--Pices
+Queen<--Pices
+King<--Pices
+
+Pawn<--Type
+Rook<--Type
+Bishop<--Type
+Knight<--Type
+Queen<--Type
+King<--Type
+
+Type<--Game
+Board<--Game
+Player<--Game
+Color<--Game
+
+Pices--*GUI
+Game--*GUI
+
+@enduml
