@@ -1,37 +1,72 @@
 @startuml 
 
-class Pices{
-    int x
-    int y
-    {method} Pices(x_loc:int, y_loc:int, player:Game::Player)
-    set_x();
-    set_y()
-    get_x():int
-    get_y():int
-    set_player()
-    get_player()
-    get_type()
-    {abstract}is_valid_path(final_x:int,final_y:int):boolean
-    {abstract}draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
+abstract class Pices{
+    {abstract} Pices()
+    {abstract}+set_localization()
+    {abstract}+get_localization()
+    {abstract}set_player()
+    {abstract}get_player()
+    {abstract}get_type()
+    {abstract}is_valid_path():boolean
+    /' abstract}draw_path(start_x:int,start_y:int,final_x:int,final_y:int) '/
 }
 
+
+class Type{
+    Pawn
+    Rook
+    Bishop
+    Knight
+    Queen
+    King
+}
+
+
+class Localization{
+    #x:int
+    #y:int
+}
+
+Pawn o--Pices
+Rook o--Pices
+Bishop o--Pices
+Knight o--Pices
+Queen o--Pices
+King o--Pices
+
+Localization o-- Pawn
+Localization o-- Rook
+Localization o-- Bishop
+Localization o-- Knight
+Localization o-- Queen
+Localization o-- King
+
+
+
 class Pawn{
+    -Localization 
     -type:Game::Type
     +Rook(x:int,y:int,player::GamePlayer)
     +is_valid_path(final_x:int,final_y:int):boolean
-    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
-    +get_type():Game::Type
+    /' draw_path( start_x : int, start_y : int, final_x : int, final_y : int )'/
+    +getType() : Game::Type
+    +set_localization()
+    +get_localization() : localization
     -can_move_forward(final_x:int,final_y:int) : boolean
     -can_move_two()
     -can_capture(final_x:int,final_y:int) : boolean
 }
 
 class Rook{
+    -Localization
     -type:Game::Type
     +Rook(x:int,y:int,player::GamePlayer)
-    +is_valid_path(final_x:int,final_y:int):boolean
-    +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
-    +get_type():Game::Type
+    +set_localization()
+    +get_localization() : localization
+    +set_player()
+    +get_player()
+    +get_type() : Game::Type
+    +is_valid_path():boolean
 }
 
 
@@ -69,14 +104,6 @@ class King{
     +get_type():Game::Type
 }
 
-class Type{
-    Pawn
-    Rook
-    Bishop
-    Knight
-    Queen
-    King
-}
 
 class Game{
     +game_board:Board
@@ -126,12 +153,6 @@ class GUI{
     +set_game()
 }
 
-Pawn<--Pices
-Rook<--Pices
-Bishop<--Pices
-Knight<--Pices
-Queen<--Pices
-King<--Pices
 
 Pawn<--Type
 Rook<--Type
@@ -145,7 +166,6 @@ Board<--Game
 Player<--Game
 Color<--Game
 
-Pices--*GUI
-Game--*GUI
+
 
 @enduml
