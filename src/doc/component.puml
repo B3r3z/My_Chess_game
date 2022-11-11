@@ -1,0 +1,24 @@
+@startuml
+
+[UI]
+[Chess Engine]
+[Chess Game]
+[AI]
+
+() MovePiece
+() GameStatus
+() AskForPossibleMoves
+
+UI -->MovePiece
+[Chess Game] <-- MovePiece
+[AI] --> MovePiece
+
+[Chess Engine] <-> AskForPossibleMoves
+[AI] <-- AskForPossibleMoves
+AskForPossibleMoves --> [Chess Game]
+
+[AI]<--GameStatus
+[UI]<--GameStatus
+GameStatus<--[Chess Game]
+
+@enduml
