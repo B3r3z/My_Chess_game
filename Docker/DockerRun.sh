@@ -8,4 +8,4 @@ docker run --rm \
     -v $HOME/.Xauthority:/root/.Xauthority \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "$scriptDir/../src/:/home/developer/Project" \
-    -it chess:0.3 /bin/bash
+    -it chess:0.3 /bin/bash \
