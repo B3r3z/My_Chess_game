@@ -11,8 +11,7 @@ abstract class Pices{
     /' abstract}draw_path(start_x:int,start_y:int,final_x:int,final_y:int) '/
 }
 
-
-class Type{
+enum Type{
     Pawn
     Rook
     Bishop
@@ -21,27 +20,24 @@ class Type{
     King
 }
 
-
 class Localization{
     #x:int
     #y:int
 }
 
-Pawn o--Pices
-Rook o--Pices
-Bishop o--Pices
-Knight o--Pices
-Queen o--Pices
-King o--Pices
+Pawn --|>Pices
+Rook --|>Pices
+Bishop --|>Pices
+Knight --|>Pices
+Queen --|>Pices
+King --|>Pices
 
-Localization o-- Pawn
-Localization o-- Rook
-Localization o-- Bishop
-Localization o-- Knight
-Localization o-- Queen
-Localization o-- King
-
-
+Localization --* Pawn
+Localization --* Rook
+Localization --* Bishop
+Localization --* Knight
+Localization --* Queen
+Localization --* King
 
 class Pawn{
     -Localization 
@@ -69,7 +65,6 @@ class Rook{
     +is_valid_path():boolean
 }
 
-
 class Bishop{
     -type:Game::Type
     +Rook(x:int,y:int,player::GamePlayer)
@@ -86,7 +81,6 @@ class Knight{
     +get_type():Game::Type
 }
 
-
 class Queen{
     -type:Game::Type
     +Rook(x:int,y:int,player::GamePlayer)
@@ -95,7 +89,6 @@ class Queen{
     +get_type():Game::Type
 }
 
-
 class King{
     -type:Game::Type
     +Rook(x:int,y:int,player::GamePlayer)
@@ -103,7 +96,6 @@ class King{
     +draw_path(start_x:int,start_y:int,final_x:int,final_y:int)
     +get_type():Game::Type
 }
-
 
 class Game{
     +game_board:Board
@@ -129,7 +121,7 @@ class Board{
     -is_capture(Pices:Pice,final_x:int,final_y:int) boolean
     -is_valid_move(Pices:Pice,final_x:int,final_y:int) boolean
 }
-class Color{
+enum Color{
     White
     Black
 }
@@ -153,19 +145,18 @@ class GUI{
     +set_game()
 }
 
+Pawn*--Type
+Rook*--Type
+Bishop*--Type
+Knight*--Type
+Queen*--Type
+King*--Type
 
-Pawn<--Type
-Rook<--Type
-Bishop<--Type
-Knight<--Type
-Queen<--Type
-King<--Type
-
-Type<--Game
-Board<--Game
-Player<--Game
-Color<--Game
-
+Type--*Game
+Color --*Player
+Player --* Game
+Board--*Game
+Game *-- Pices
 
 
 @enduml

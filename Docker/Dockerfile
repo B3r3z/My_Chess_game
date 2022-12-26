@@ -26,6 +26,3 @@ USER root
     WORKDIR /home/developer/Project
 
 ENTRYPOINT [ "/bin/bash", "-c" ]
-
-
-

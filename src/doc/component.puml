@@ -11,7 +11,7 @@
 
 UI -->MovePiece
 [Chess Game] <-- MovePiece
-[AI] --> MovePiece
+[AI] --> MovePieceF
 
 [Chess Engine] <-> AskForPossibleMoves
 [AI] <-- AskForPossibleMoves
@@ -19,6 +19,7 @@ AskForPossibleMoves --> [Chess Game]
 
 [AI]<--GameStatus
 [UI]<--GameStatus
+[Chess Engine]<-- GameStatus
 GameStatus<--[Chess Game]
 
 @enduml
