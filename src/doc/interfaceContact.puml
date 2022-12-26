@@ -1,0 +1,17 @@
+@startuml
+
+class messageGameStatus{
+    int BoardArray[][]::int int 
+    string rep
+}
+
+class messageMovePice{
+    void move(int x, int y, int finalX, int finalY)
+}
+
+
+class messageAskForPosibleMoves{
+    bool ask(int x,int y)
+}
+
+@enduml
